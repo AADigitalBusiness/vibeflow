@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2026-03-04
+
+### Added
+- Added a structured documentation navigation index for the VibeBlocks docs site.
+- Included the root `CHANGELOG.md` in the published documentation pages.
+
+### Changed
+- Renamed the `Flow` parameter `steps` to `blocks`, and updated docs and examples to match the new API naming.
+
 ## [0.1.1] - 2026-02-28
 
 ### Changed
