@@ -1,0 +1,77 @@
+name: Draft Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/vibeblocks/__init__.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  draft-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract version
+        id: version
+        run: |
+          VERSION=$(python - <<'EOF'
+          import re, sys
+          with open("src/vibeblocks/__init__.py") as f:
+              m = re.search(r'^__version__\s*=\s*["\']([^"\']+)["\']', f.read(), re.M)
+          if not m:
+              print("Could not find __version__", file=sys.stderr)
+              sys.exit(1)
+          print(m.group(1))
+          EOF
+          )
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Extract changelog section
+        id: changelog
+        run: |
+          python - <<'PYEOF' > /tmp/release_notes.md
+          import re
+
+          version = "${{ steps.version.outputs.version }}"
+
+          with open("CHANGELOG.md") as f:
+              text = f.read()
+
+          # Match the section for the target version through the next H2 (or EOF)
+          pattern = rf"## \[{re.escape(version)}\].*?(?=\n## \[|\Z)"
+          m = re.search(pattern, text, re.DOTALL)
+          if m:
+              print(m.group(0).strip())
+          else:
+              print(f"Release {version}")
+          PYEOF
+
+      - name: Check if release already exists
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          if gh release view "$TAG" > /dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create draft release
+        if: steps.check.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ steps.version.outputs.tag }}" \
+            --title "release ${{ steps.version.outputs.version }}" \
+            --notes-file /tmp/release_notes.md \
+            --draft
