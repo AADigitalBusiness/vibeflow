@@ -25,6 +25,15 @@
   --md-code-fg-color:           #f8fafc !important;
 }
 
+/* Specificity override for Material's palette-based code colors */
+[data-md-color-scheme] .md-typeset code,
+[data-md-color-scheme] .md-typeset pre,
+[data-md-color-scheme] .md-typeset pre > code,
+[data-md-color-scheme] .highlight code {
+  color: #f8fafc !important;
+  background-color: transparent !important; /* Ensure inherited bg doesn't conflict */
+}
+
 /* --- Base Typography --- */
 body,
 .md-typeset {
@@ -125,17 +134,17 @@ html [data-md-color-scheme] .highlight {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Precise Syntax Highlighting (No catch-all span color) */
-.highlight .go { color: #f8fafc !important; }  /* Generic output */
-.highlight .gp { color: #00FC40 !important; }  /* Prompt $ */
-.highlight .c1 { color: #6a7282 !important; }  /* Comments - clinical grey */
-.highlight .k  { color: #00FC40 !important; font-weight: 600; }  /* Keywords - Signal Green */
-.highlight .s2 { color: #a5f3bc !important; }  /* Strings - Pale Green */
-.highlight .nf { color: #ffffff !important; font-weight: 500; }  /* Functions - Stark White */
-.highlight .nb { color: #00FC40 !important; }  /* Built-ins */
-.highlight .nn { color: #f8fafc !important; }  /* Name/Namespace */
-.highlight .p  { color: #cbd5e1 !important; }  /* Punctuation */
-.highlight .n  { color: #f1f5f9 !important; }  /* Names */
+/* Precise Syntax Highlighting (High Specificity) */
+[data-md-color-scheme] .highlight .go { color: #f8fafc !important; }  /* Generic output */
+[data-md-color-scheme] .highlight .gp { color: #00FC40 !important; }  /* Prompt $ */
+[data-md-color-scheme] .highlight .c1 { color: #6a7282 !important; }  /* Comments - clinical grey */
+[data-md-color-scheme] .highlight .k  { color: #00FC40 !important; font-weight: 600; }  /* Keywords - Signal Green */
+[data-md-color-scheme] .highlight .s2 { color: #a5f3bc !important; }  /* Strings - Pale Green */
+[data-md-color-scheme] .highlight .nf { color: #ffffff !important; font-weight: 500; }  /* Functions - Stark White */
+[data-md-color-scheme] .highlight .nb { color: #00FC40 !important; }  /* Built-ins */
+[data-md-color-scheme] .highlight .nn { color: #f8fafc !important; }  /* Name/Namespace */
+[data-md-color-scheme] .highlight .p  { color: #cbd5e1 !important; }  /* Punctuation */
+[data-md-color-scheme] .highlight .n  { color: #f1f5f9 !important; }  /* Names */
 
 /* Inline code adjustment */
 .md-typeset code:not(pre code) {
