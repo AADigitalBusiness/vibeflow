@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.4] - 2026-04-01
+
+### Added
+- Migrated the documentation engine from Sphinx/ReadTheDocs to **MkDocs** with the **Material for MkDocs** theme.
+- Implemented a custom documentation "Clinical Architect" design system with optimized dark/light modes and Inter/JetBrains Mono typography.
+- Integrated **Plausible Analytics** for documenting telemetry (hash, outbound links, and tagged events).
+- Added a dynamic **PyPI Downloads badge** to the global documentation navbar.
+
+### Changed
+- Transitioned the official project domain to **vibeblocks.org**.
+- Updated `project.urls` in `pyproject.toml` to reflect the new domain and structured documentation index.
+
 ## [0.1.3] - 2026-03-11
 
 ### Added
