@@ -2,7 +2,7 @@
 
 site_name: VibeBlocks
 site_description: Lightweight Python workflow orchestration library for AI agents, async task execution, retries, and failure-safe automation.
-site_url: https://vibeblocks.aadigitalbusiness.com
+site_url: https://vibeblocks.org
 repo_url: https://github.com/AADigitalBusiness/vibeblocks
 repo_name: AADigitalBusiness/vibeblocks
 edit_uri: edit/main/docs/
