@@ -2,13 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.1.4] - 2026-03-26
+## [0.1.4] - 2026-04-01
 
 ### Added
+- Migrated the documentation engine from Sphinx/ReadTheDocs to **MkDocs** with the **Material for MkDocs** theme.
+- Implemented a custom documentation "Clinical Architect" design system with optimized dark/light modes and Inter/JetBrains Mono typography.
+- Integrated **Plausible Analytics** for documenting telemetry (hash, outbound links, and tagged events).
+- Added a dynamic **PyPI Downloads badge** to the global documentation navbar.
 - MkDocs-based documentation site and deployment workflow, including an expanded docs structure and new dedicated pages such as nested flows (`05.1-nested-flows.md`).
 - Cloudflare Wrangler configuration (`wrangler.toml`) and related docs deployment support.
 
 ### Changed
+- Transitioned the official project domain to **vibeblocks.org**.
+- Updated `project.urls` in `pyproject.toml` to reflect the new domain and structured documentation index.
 - Documentation experience overhaul with improved navigation, landing pages, and visual presentation across the docs site.
 - Syntax highlighting and code block styling were refined for more consistent theme rendering.
 - Optional documentation dependencies were migrated from Sphinx tooling to `mkdocs-material` in `pyproject.toml` (`docs` and `dev` extras).
