@@ -1,5 +1,7 @@
 <!-- @format -->
 
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/vibeblocks?period=monthly&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=BRIGHTGREEN&left_text=Downloads)](https://pepy.tech/projects/vibeblocks)
+
 # VibeBlocks
 
 **AI-First Orchestration for Python.**
